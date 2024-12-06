@@ -1,29 +1,25 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { PrismaClient } from '@prisma/client'
+
+import barbershopRouter from './src/barbershop/barbershopController.js'
+import employeeRouter from './src/employee/employeeController.js'
+import serviceRouter from './src/service/serviceController.js'
 
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT
-const prisma = new PrismaClient()
 
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/barbershops', barbershopRouter)
+app.use('/api/employees', employeeRouter)
+app.use('/api/services', serviceRouter)
+
 app.get('/', (req, res) => {
-  res.send('poggers')
-})
-
-app.get('/dados', (req, res) => {
- res.send('foggers')
-})
-
-app.post('/json', (req, res) => {
-const dados  = req.body
-console.log (dados.nome)
-res.json({ message: 'lumbertycoon', dados })
+  res.send('<style>* {background-color: green;}</style>')
 })
 
 app.listen(port, () => {

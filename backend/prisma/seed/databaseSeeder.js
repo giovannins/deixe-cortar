@@ -1,7 +1,6 @@
 import prisma from '../prismaClient.js'
 import { fakerPT_BR as faker } from '@faker-js/faker'
-
-
+import bycrypt from 'bcryptjs'
 
 async function main() {
   for (let i = 0; i < 10; i++) {
@@ -47,6 +46,28 @@ async function main() {
       },
     })
   }
+
+  await prisma.user.createMany({
+    data: [
+      {
+        email: 'superadmin@example.com',
+        password: await bycrypt.hash('password', 10),
+        role: 'SUPERADMIN',
+      },
+      {
+        email: 'admin@example.com',
+        password: await bycrypt.hash('password', 10),
+        role: 'ADMIN',
+        barbershopId: 1,
+      },
+      {
+        email: 'employee@example.com',
+        password: await bycrypt.hash('password', 10),
+        role: 'EMPLOYEE',
+        barbershopId: 1
+      },
+    ],
+  })
 }
 
 main()

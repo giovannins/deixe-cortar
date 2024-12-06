@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = env("DATABASE_PROVIDER")
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -26,6 +26,8 @@ model Barbershop {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   deletedAt  DateTime?
+  employees  Employee[]
+  services   Service[]
 }
 
 model Employee {

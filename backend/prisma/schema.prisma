@@ -14,20 +14,21 @@ datasource db {
 }
 
 model Barbershop {
-  id         Int      @id @default(autoincrement())
-  name       String
-  address    String
-  banner     String
-  color      String
-  icon       String
-  phone      String
-  email      String   @unique
-  active     Boolean  @default(true)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  deletedAt  DateTime?
-  employees  Employee[]
-  services   Service[]
+  id        Int        @id @default(autoincrement())
+  name      String
+  address   String
+  banner    String
+  color     String
+  icon      String
+  phone     String
+  email     String     @unique
+  active    Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  employees Employee[]
+  services  Service[]
+  User      User[]
 }
 
 model Employee {
@@ -54,4 +55,14 @@ model Service {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
+}
+
+model User {
+  id           Int         @id @default(autoincrement())
+  email        String      @unique
+  password     String
+  role         String      @default("EMPLOYEE")
+  token        String?
+  barbershopId Int?
+  barbershop   Barbershop? @relation(fields: [barbershopId], references: [id])
 }

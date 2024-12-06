@@ -9,13 +9,47 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = env("DATABASE_PROVIDER")
   url      = env("DATABASE_URL")
 }
 
-model User {
-id Int @id
-name String
-email String @unique
+model Barbershop {
+  id         Int      @id @default(autoincrement())
+  name       String
+  address    String
+  banner     String
+  color      String
+  icon       String
+  phone      String
+  email      String   @unique
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+}
 
+model Employee {
+  id           Int        @id @default(autoincrement())
+  name         String
+  phone        String
+  note         String?
+  barbershopId Int
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+}
+
+model Service {
+  id           Int        @id @default(autoincrement())
+  title        String
+  description  String
+  price        Float
+  time         Int
+  active       Boolean    @default(true)
+  barbershopId Int
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
 }

@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import barbershopRouter from './src/barbershop/barbershopController.js'
 import employeeRouter from './src/employee/employeeController.js'
 import serviceRouter from './src/service/serviceController.js'
+import userRouter from './src/user/userController.js'
 
 dotenv.config()
 
@@ -14,6 +15,7 @@ const port = process.env.PORT
 app.use(cors())
 app.use(express.json())
 
+app.use('/api', userRouter)
 app.use('/api/barbershops', barbershopRouter)
 app.use('/api/employees', employeeRouter)
 app.use('/api/services', serviceRouter)

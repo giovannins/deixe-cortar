@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const userUserStore = defineStore('counter', () => {
+export const userUserStore = defineStore('user', () => {
   const jwt = ref('')
   const isLoggedIn = ref(false)
   const expiredIn = ref(0)

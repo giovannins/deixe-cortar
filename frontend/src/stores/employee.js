@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useEmployeeStore = defineStore('counter', () => {
+export const useEmployeeStore = defineStore('employee', () => {
   const employees = ref([])
   const employee = ref(null)
   const isLoading = ref(false)

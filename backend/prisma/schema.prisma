@@ -49,6 +49,7 @@ model Service {
   description  String
   price        Float
   time         Int
+  photo        String
   active       Boolean    @default(true)
   barbershopId Int
   barbershop   Barbershop @relation(fields: [barbershopId], references: [id])

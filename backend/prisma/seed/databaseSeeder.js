@@ -8,7 +8,7 @@ async function main() {
       data: {
         name: faker.company.name(),
         address: faker.location.streetAddress(),
-        banner: faker.image.url(),
+        banner: faker.image.url({width: 1280, height: 720}),
         color: faker.internet.color(),
         icon: faker.image.avatar(),
         phone: faker.phone.number(),

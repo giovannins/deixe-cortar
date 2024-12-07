@@ -32,10 +32,14 @@ barbershopRouter.get('/', async (req, res) => {
 // Get a single barbershop by ID
 barbershopRouter.get('/:id', async (req, res) => {
   const { id } = req.params
+  const { withEmployees, withServices } = req.query
   try {
     const barbershop = await prisma.barbershop.findUnique({
       where: { id: Number(id) },
-      include: { employees: true },
+      include: {
+        employees: withEmployees === 'true',
+        services: withServices === 'true',
+      },
     })
     if (barbershop) {
       res.status(200).json(barbershop)

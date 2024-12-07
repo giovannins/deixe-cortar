@@ -4,7 +4,7 @@ import express from 'express'
 const serviceRouter = express.Router()
 
 // Create a new service
-serviceRouter.post('/services', async (req, res) => {
+serviceRouter.post('/', async (req, res) => {
   const { title, description, price, time, barbershopId } = req.body
   try {
     const service = await prisma.service.create({
@@ -23,7 +23,7 @@ serviceRouter.post('/services', async (req, res) => {
 })
 
 // Get all services
-serviceRouter.get('/services', async (req, res) => {
+serviceRouter.get('/', async (req, res) => {
   try {
     const services = await prisma.service.findMany()
     res.status(200).json(services)
@@ -33,7 +33,7 @@ serviceRouter.get('/services', async (req, res) => {
 })
 
 // Get a single service by ID
-serviceRouter.get('/services/:id', async (req, res) => {
+serviceRouter.get('/:id', async (req, res) => {
   const { id } = req.params
   try {
     const service = await prisma.service.findUnique({
@@ -50,7 +50,7 @@ serviceRouter.get('/services/:id', async (req, res) => {
 })
 
 // Update a service by ID
-serviceRouter.put('/services/:id', async (req, res) => {
+serviceRouter.put('/:id', async (req, res) => {
   const { id } = req.params
   const { title, description, price, time, active } = req.body
   try {
@@ -71,7 +71,7 @@ serviceRouter.put('/services/:id', async (req, res) => {
 })
 
 // Delete a service by ID
-serviceRouter.delete('/services/:id', async (req, res) => {
+serviceRouter.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
     await prisma.service.delete({

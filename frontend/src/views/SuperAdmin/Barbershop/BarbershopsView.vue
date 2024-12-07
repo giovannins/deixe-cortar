@@ -25,7 +25,8 @@ function setSelector(index) {
   <div v-if="!barbershopStore.isLoading">
     <section class="hero is-link">
       <div class="hero-body">
-        <p class="title">{{ barbershopStore.barbershop.name }}</p>
+        <p class="title">Barbershop</p>
+        <p class="subtitle">{{ barbershopStore.barbershop.name }}</p>
       </div>
     </section>
     <section class="container is-fluid my-6">

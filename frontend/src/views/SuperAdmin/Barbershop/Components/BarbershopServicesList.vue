@@ -27,7 +27,7 @@ defineProps({
             <td><input type="checkbox" name="active" id="active" :checked="service.active" disabled></td>
             <td>
               <router-link
-                :to="{ params: { id: service.id } }"
+                :to="{ name: 'service-detail', params: { id: service.id } }"
                 class="button is-warning mx-1"
                 >Details</router-link
               >

@@ -25,7 +25,7 @@ defineProps({
             <td>{{ employee.note }}</td>
             <td>
               <router-link
-                :to="{ params: { id: employee.id } }"
+                :to="{ name: 'employee-detail', params: { id: employee.id } }"
                 class="button is-warning mx-1"
                 >Details</router-link
               >
